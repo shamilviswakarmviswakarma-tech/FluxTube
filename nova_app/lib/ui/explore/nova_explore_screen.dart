@@ -96,24 +96,30 @@ class _NovaExploreScreenState extends State<NovaExploreScreen> {
               actions: [
                 IconButton(
                   tooltip: 'Explore topics',
-                  onPressed: () => widget.onTopicSelected?.call('Explore topics'),
+                  onPressed: () =>
+                      widget.onTopicSelected?.call('Explore topics'),
                   icon: const Icon(Icons.tune_rounded),
                 ),
                 SizedBox(width: horizontalPadding - 8),
               ],
             ),
             SliverPadding(
-              padding: EdgeInsets.fromLTRB(horizontalPadding, 12, horizontalPadding, 32),
+              padding: EdgeInsets.fromLTRB(
+                  horizontalPadding, 12, horizontalPadding, 32),
               sliver: SliverList(
                 delegate: SliverChildListDelegate([
                   const Text(
                     'Find your next rabbit hole.',
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.w800, letterSpacing: -0.7),
+                    style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.w800,
+                        letterSpacing: -0.7),
                   ),
                   const SizedBox(height: 7),
                   const Text(
                     'Fresh ideas, useful skills and stories worth exploring.',
-                    style: TextStyle(color: NovaColors.secondaryText, height: 1.4),
+                    style:
+                        TextStyle(color: NovaColors.secondaryText, height: 1.4),
                   ),
                   const SizedBox(height: 24),
                   _SectionTitle(
@@ -139,7 +145,8 @@ class _NovaExploreScreenState extends State<NovaExploreScreen> {
                         selected: selected,
                         onTap: () {
                           setState(() {
-                            _selectedCategory = selected ? 'All' : category.label;
+                            _selectedCategory =
+                                selected ? 'All' : category.label;
                           });
                           widget.onCategorySelected?.call(
                             selected ? 'All' : category.label,
@@ -153,7 +160,8 @@ class _NovaExploreScreenState extends State<NovaExploreScreen> {
                     title: 'Curated for curious minds',
                     subtitle: 'Hand-picked paths through interesting subjects',
                     trailing: 'View all',
-                    onTrailingTap: () => widget.onTopicSelected?.call('Curated collections'),
+                    onTrailingTap: () =>
+                        widget.onTopicSelected?.call('Curated collections'),
                   ),
                   const SizedBox(height: 14),
                   ...NovaExploreScreen._collections.map(
@@ -162,7 +170,8 @@ class _NovaExploreScreenState extends State<NovaExploreScreen> {
                       child: _CollectionCard(
                         collection: collection,
                         compact: !wide,
-                        onTap: () => widget.onTopicSelected?.call(collection.title),
+                        onTap: () =>
+                            widget.onTopicSelected?.call(collection.title),
                       ),
                     ),
                   ),
@@ -208,21 +217,24 @@ class _NovaExploreScreenState extends State<NovaExploreScreen> {
                           detail: 'Fresh perspectives',
                           icon: Icons.bolt_rounded,
                           color: NovaColors.primary,
-                          onTap: () => widget.onTopicSelected?.call('Get inspired'),
+                          onTap: () =>
+                              widget.onTopicSelected?.call('Get inspired'),
                         ),
                         _MoodCard(
                           label: 'Go deeper',
                           detail: 'Understand more',
                           icon: Icons.travel_explore_rounded,
                           color: const Color(0xFF159B83),
-                          onTap: () => widget.onTopicSelected?.call('Go deeper'),
+                          onTap: () =>
+                              widget.onTopicSelected?.call('Go deeper'),
                         ),
                         _MoodCard(
                           label: 'Create more',
                           detail: 'Ideas into action',
                           icon: Icons.draw_rounded,
                           color: const Color(0xFFB45A9A),
-                          onTap: () => widget.onTopicSelected?.call('Create more'),
+                          onTap: () =>
+                              widget.onTopicSelected?.call('Create more'),
                         ),
                       ],
                     ),
@@ -287,16 +299,21 @@ class _SectionTitle extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(title, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w750)),
+              Text(title,
+                  style: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.w750)),
               const SizedBox(height: 4),
-              Text(subtitle, style: const TextStyle(color: NovaColors.muted, fontSize: 12)),
+              Text(subtitle,
+                  style:
+                      const TextStyle(color: NovaColors.muted, fontSize: 12)),
             ],
           ),
         ),
         if (trailing != null)
           TextButton(
             onPressed: onTrailingTap,
-            child: Text(trailing!, style: const TextStyle(color: NovaColors.bright)),
+            child: Text(trailing!,
+                style: const TextStyle(color: NovaColors.bright)),
           ),
       ],
     );
@@ -317,7 +334,9 @@ class _CategoryTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: selected ? NovaColors.primary.withValues(alpha: 0.16) : NovaColors.surface,
+      color: selected
+          ? NovaColors.primary.withValues(alpha: 0.16)
+          : NovaColors.surface,
       borderRadius: BorderRadius.circular(16),
       child: InkWell(
         onTap: onTap,
@@ -327,7 +346,9 @@ class _CategoryTile extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
-              color: selected ? category.color.withValues(alpha: 0.8) : NovaColors.border,
+              color: selected
+                  ? category.color.withValues(alpha: 0.8)
+                  : NovaColors.border,
             ),
           ),
           child: Row(
@@ -347,7 +368,8 @@ class _CategoryTile extends StatelessWidget {
                   category.label,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(fontWeight: FontWeight.w650, fontSize: 13),
+                  style: const TextStyle(
+                      fontWeight: FontWeight.w650, fontSize: 13),
                 ),
               ),
             ],
@@ -413,19 +435,24 @@ class _CollectionCard extends StatelessWidget {
                       const SizedBox(height: 8),
                       Text(
                         collection.title,
-                        style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w800),
+                        style: const TextStyle(
+                            fontSize: 17, fontWeight: FontWeight.w800),
                       ),
                       const SizedBox(height: 5),
                       Text(
                         collection.subtitle,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(color: NovaColors.secondaryText, fontSize: 11, height: 1.35),
+                        style: const TextStyle(
+                            color: NovaColors.secondaryText,
+                            fontSize: 11,
+                            height: 1.35),
                       ),
                       const SizedBox(height: 9),
                       Text(
                         collection.count,
-                        style: const TextStyle(color: NovaColors.muted, fontSize: 10),
+                        style: const TextStyle(
+                            color: NovaColors.muted, fontSize: 10),
                       ),
                     ],
                   ),
@@ -501,9 +528,13 @@ class _MoodCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(label, style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 13)),
+                      Text(label,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w700, fontSize: 13)),
                       const SizedBox(height: 4),
-                      Text(detail, style: const TextStyle(color: NovaColors.muted, fontSize: 10)),
+                      Text(detail,
+                          style: const TextStyle(
+                              color: NovaColors.muted, fontSize: 10)),
                     ],
                   ),
                 ),
