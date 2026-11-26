@@ -78,13 +78,15 @@ class HomePage extends StatelessWidget {
                   const _FeatureTile(
                     icon: Icons.auto_awesome,
                     title: 'AI Studio',
-                    subtitle: 'Turn available transcripts into summaries and notes.',
+                    subtitle:
+                        'Turn available transcripts into summaries and notes.',
                   ),
                   const SizedBox(height: 12),
                   const _FeatureTile(
                     icon: Icons.bookmark_outline_rounded,
                     title: 'Your Library',
-                    subtitle: 'Keep videos, playlists, bookmarks and learning notes together.',
+                    subtitle:
+                        'Keep videos, playlists, bookmarks and learning notes together.',
                   ),
                 ],
               ),
@@ -124,7 +126,10 @@ class _FeatureTile extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title, style: const TextStyle(fontWeight: FontWeight.w700)),
+                Text(
+                  title,
+                  style: const TextStyle(fontWeight: FontWeight.w700),
+                ),
                 const SizedBox(height: 4),
                 Text(
                   subtitle,
