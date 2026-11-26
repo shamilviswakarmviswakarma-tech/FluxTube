@@ -11,7 +11,8 @@ class ProviderCoordinator {
 
   final Map<String, SearchProvider> _providers;
 
-  List<String> get availableProviderIds => _providers.keys.toList(growable: false);
+  List<String> get availableProviderIds =>
+      _providers.keys.toList(growable: false);
 
   Future<ProviderResult<MediaItem>> search({
     required String providerId,
