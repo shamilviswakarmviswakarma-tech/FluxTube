@@ -23,7 +23,7 @@ class _NovaFullVideoPlayerScreenState extends State<NovaFullVideoPlayerScreen> {
   bool _showControls = true;
   bool _captions = false;
   bool _locked = false;
-  bool _pipEnabled = true;
+  bool _pipEnabled = true;\n  String _backgroundMode = 'off';\n\n  static const MethodChannel _backgroundChannel =\n      MethodChannel('com.novatube.app/background_play');
 
   static const MethodChannel _pipChannel =
       MethodChannel('com.novatube.app/picture_in_picture');
@@ -31,7 +31,7 @@ class _NovaFullVideoPlayerScreenState extends State<NovaFullVideoPlayerScreen> {
   @override
   void initState() {
     super.initState();
-    _updatePipAvailability(true);
+    _updatePipAvailability(true);\n    _loadBackgroundMode();
   }
 
   @override
@@ -53,7 +53,7 @@ class _NovaFullVideoPlayerScreenState extends State<NovaFullVideoPlayerScreen> {
     }
   }
 
-  void _togglePip(bool enabled) {
+  Future<void> _loadBackgroundMode() async {\n    try {\n      final mode = await _backgroundChannel.invokeMethod<String>('getMode');\n      if (mounted && mode != null) setState(() => _backgroundMode = mode);\n    } on PlatformException {\n      // Native background playback is unavailable in widget previews.\n    } on MissingPluginException {\n      // Native background playback is unavailable in widget previews.\n    }\n  }\n\n  Future<void> _setBackgroundMode(String mode) async {\n    try {\n      await _backgroundChannel.invokeMethod<bool>('setMode', <String, Object>{'mode': mode});\n      if (mounted) setState(() => _backgroundMode = mode);\n    } on PlatformException {\n      if (mounted) ScaffoldMessenger.of(context).showSnackBar(\n        const SnackBar(content: Text('Background Play settings are unavailable on this device.')),\n      );\n    } on MissingPluginException {\n      if (mounted) ScaffoldMessenger.of(context).showSnackBar(\n        const SnackBar(content: Text('Background Play is available in the Android app build.')),\n      );\n    }\n  }\n\n  void _togglePip(bool enabled) {
     setState(() => _pipEnabled = enabled);
     _updatePipAvailability(enabled);
   }

@@ -1,4 +1,4 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">\n    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />\n    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />\n    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <application
         android:label="NovaTube"
         android:name="${applicationName}"
@@ -20,6 +20,6 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <meta-data android:name="flutterEmbedding" android:value="2" />
+        <service\n            android:name=".NovaPlaybackService"\n            android:exported="true"\n            android:foregroundServiceType="mediaPlayback">\n            <intent-filter>\n                <action android:name="androidx.media3.session.MediaSessionService" />\n            </intent-filter>\n        </service>\n        <meta-data android:name="flutterEmbedding" android:value="2" />
     </application>
 </manifest>

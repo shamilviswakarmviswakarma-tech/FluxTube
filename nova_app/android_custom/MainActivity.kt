@@ -1,6 +1,7 @@
 package com.example.novatube_app
 
 import android.app.PictureInPictureParams
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.util.Rational
@@ -10,10 +11,55 @@ import io.flutter.plugin.common.MethodChannel
 
 class MainActivity : FlutterActivity() {
     private val channelName = "com.novatube.app/picture_in_picture"
+    private val backgroundChannelName = "com.novatube.app/background_play"
     private var pipEnabled = false
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
+        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, backgroundChannelName)
+            .setMethodCallHandler { call, result ->
+                when (call.method) {
+                    "setMode" -> {
+                        val mode = call.argument<String>("mode") ?: "off"
+                        if (mode !in setOf("always", "headphones", "off")) {
+                            result.error("INVALID_MODE", "Unsupported background mode", null)
+                        } else {
+                            getSharedPreferences("novatube_playback", MODE_PRIVATE)
+                                .edit().putString("background_mode", mode).apply()
+                            result.success(true)
+                        }
+                    }
+                    "play" -> {
+                        val mode = getSharedPreferences("novatube_playback", MODE_PRIVATE)
+                            .getString("background_mode", "off") ?: "off"
+                        val uri = call.argument<String>("uri")
+                        if (mode == "off") {
+                            result.error("BACKGROUND_DISABLED", "Background Play is off", null)
+                        } else if (uri.isNullOrBlank()) {
+                            result.error("MISSING_MEDIA_URI", "A supported media stream URI is required", null)
+                        } else {
+                            val intent = Intent(this, NovaPlaybackService::class.java).apply {
+                                action = NovaPlaybackService.ACTION_PLAY
+                                putExtra(NovaPlaybackService.EXTRA_URI, uri)
+                                putExtra(NovaPlaybackService.EXTRA_TITLE, call.argument<String>("title") ?: "NovaTube")
+                                putExtra(NovaPlaybackService.EXTRA_ARTIST, call.argument<String>("artist") ?: "NovaTube")
+                            }
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) startForegroundService(intent)
+                            else startService(intent)
+                            result.success(true)
+                        }
+                    }
+                    "stop" -> {
+                        stopService(Intent(this, NovaPlaybackService::class.java))
+                        result.success(true)
+                    }
+                    "getMode" -> result.success(
+                        getSharedPreferences("novatube_playback", MODE_PRIVATE)
+                            .getString("background_mode", "off") ?: "off"
+                    )
+                    else -> result.notImplemented()
+                }
+            }
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, channelName)
             .setMethodCallHandler { call, result ->
                 when (call.method) {
