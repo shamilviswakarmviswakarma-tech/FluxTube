@@ -115,9 +115,9 @@ class NovaHomeScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 18),
-                  _CategoryRail(categories: _categories),
+                  const _CategoryRail(categories: _categories),
                   const SizedBox(height: 24),
-                  _SectionHeading(
+                  const _SectionHeading(
                     title: 'Your next discovery',
                     subtitle: 'A little inspiration for today',
                   ),
@@ -140,7 +140,7 @@ class NovaHomeScreen extends StatelessWidget {
                     onTap: (id) => onVideoTap?.call(id),
                   ),
                   const SizedBox(height: 28),
-                  _SectionHeading(
+                  const _SectionHeading(
                     title: 'Keep learning',
                     subtitle: 'Short ideas. Big possibilities.',
                   ),
@@ -649,7 +649,7 @@ class _VideoMetadata extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 4),
-        Icon(
+        const Icon(
           Icons.more_vert_rounded,
           size: 19,
           color: NovaColors.muted,
