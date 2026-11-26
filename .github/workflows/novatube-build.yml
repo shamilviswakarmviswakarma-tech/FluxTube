@@ -1,0 +1,50 @@
+name: NovaTube APK Build
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "novatube/**"
+      - ".github/workflows/novatube-build.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build independent NovaTube APK
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: novatube
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: "3.47.1"
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build NovaTube debug APK
+        run: flutter build apk --debug
+
+      - name: Upload NovaTube APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: NovaTube-debug-APK
+          path: novatube/build/app/outputs/flutter-apk/app-debug.apk
+          if-no-files-found: error
+          retention-days: 30
