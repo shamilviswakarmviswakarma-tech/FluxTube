@@ -73,19 +73,33 @@ class _NovaFullVideoPlayerScreenState extends State<NovaFullVideoPlayerScreen> {
 
   Future<void> _setBackgroundMode(String mode) async {
     try {
-      await _backgroundChannel.invokeMethod<bool>('setMode', <String, Object>{'mode': mode});
+      await _backgroundChannel.invokeMethod<bool>(
+        'setMode',
+        <String, Object>{'mode': mode},
+      );
       if (mounted) {
         setState(() => _backgroundMode = mode);
       }
     } on PlatformException {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Background Play settings are unavailable on this device.')),
-      );
+          const SnackBar(
+            content: Text(
+              'Background Play settings are unavailable on this device.',
+            ),
+          ),
+        );
+      }
     } on MissingPluginException {
-      if (mounted) ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Background Play is available in the Android app build.')),
-      );
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text(
+              'Background Play is available in the Android app build.',
+            ),
+          ),
+        );
+      }
     }
   }
 
@@ -451,8 +465,8 @@ class _NovaFullVideoPlayerScreenState extends State<NovaFullVideoPlayerScreen> {
                       onChanged: (value) {
                         Navigator.pop(dialogContext);
                         if (value != null) {
-          _setBackgroundMode(value);
-        }
+                          _setBackgroundMode(value);
+                        }
                       },
                       child: const Column(
                         mainAxisSize: MainAxisSize.min,
@@ -526,11 +540,6 @@ class _PlayerSidePanel extends StatelessWidget {
           icon: Icons.notes_rounded,
           title: 'Transcript',
           subtitle: 'Transcript will appear when available',
-        ),
-        const _ToolTile(
-          icon: Icons.auto_awesome_rounded,
-          title: 'AI Studio',
-          subtitle: 'Summaries, notes and study tools',
         ),
         const SizedBox(height: 16),
         const Text('Quick seek', style: TextStyle(fontWeight: FontWeight.w700)),
