@@ -1,0 +1,17 @@
+"files": [
+  {
+    "source": "/lib/l10n/intl_en.arb",
+    "translation": "/lib/l10n/intl_%two_letters_code%.arb",
+    "skip_untranslated_files": true,
+    "export_only_approved": true
+  }
+]
+
+"pull_request_title": "Update translations"
+"pull_request_labels": [
+  "l10n",
+  "translation"
+]
+"pull_request_assignees": [
+  "mu-fazil-vk"
+]

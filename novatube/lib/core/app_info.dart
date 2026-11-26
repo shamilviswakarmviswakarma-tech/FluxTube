@@ -1,0 +1,89 @@
+import 'model/app_info_model.dart';
+
+class AppInfo {
+  static final myApp = AppInfoModel(
+    name: 'NovaTube',
+    nickname: 'novatube',
+    url: 'https://github.com/shamilviswakarmviswakarma-tech/FluxTube',
+    description: 'A customizable video experience with smart playback and learning tools',
+    image: 'fluxtube.png',
+  );
+
+  static List<AppInfoModel> developerInfos = <AppInfoModel>[
+    // DO NOT EDIT
+    AppInfoModel(
+      name: 'Muhammed Fazil vk',
+      url: 'https://github.com/mu-fazil-vk',
+      description: 'Founder | Lead Developer',
+    ),
+  ];
+
+  static List<AppInfoModel> translatorsInfos = <AppInfoModel>[
+    AppInfoModel(
+      name: 'Fazil vk',
+      url: 'https://github.com/mu-fazil-vk',
+      description: 'English, Malayalam',
+    ),
+    AppInfoModel(
+      name: 'ShLerP',
+      url: 'https://github.com/mikropsoft',
+      description: 'Turkish',
+    ),
+    AppInfoModel(
+      name: 'Arthur',
+      url: 'https://github.com/un-logic',
+      description: 'Russian',
+    ),
+    AppInfoModel(
+      name: 'longlegmax',
+      url: 'https://github.com/longlegmax',
+      description: 'Chinese (Simplified)',
+    ),
+    AppInfoModel(
+      name: 'Danilo Lutz',
+      url: 'https://danilolutz.dev',
+      description: 'Portuguese (Brazil)',
+    ),
+    AppInfoModel(
+      name: 'Islam Shoman',
+      url: 'https://crowdin.com/profile/drshoman',
+      description: 'Arabic',
+    ),
+    AppInfoModel(
+      name: 'maboroshin',
+      url: 'https://github.com/maboroshin',
+      description: 'Japanese',
+    ),
+    AppInfoModel(
+      name: '미르냥',
+      url: 'https://crowdin.com/profile/mirnyang',
+      description: 'Korean',
+    ),
+    AppInfoModel(
+      name: 'Patriot77',
+      url: 'https://crowdin.com/profile/patriot77',
+      description: 'Polish',
+    ),
+    AppInfoModel(
+      name: 'Liu Zehao',
+      url: 'https://crowdin.com/profile/tonyblur',
+      description: 'Chinese (Simplified)',
+    ),
+    AppInfoModel(
+      name: 'Hualiang',
+      url: 'https://crowdin.com/profile/hualiong',
+      description: 'Chinese (Simplified)',
+    ),
+    AppInfoModel(
+      name: 'Mathis Serrieres Maniecki',
+      url: 'https://crowdin.com/profile/minarox',
+      description: 'French',
+    ),
+    AppInfoModel(
+      name: 'Mickael81',
+      url: 'https://crowdin.com/profile/mickael81',
+      description: 'French',
+    ),
+    // more...
+  ];
+}

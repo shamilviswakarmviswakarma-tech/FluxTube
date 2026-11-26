@@ -1,0 +1,198 @@
+{
+  "home": "Strona główna",
+  "@home": {
+    "description": "Home label"
+  },
+  "trending": "Na czasie",
+  "@trending": {
+    "description": "Trending label"
+  },
+  "saved": "Zapisane",
+  "@saved": {
+    "description": "Saved label"
+  },
+  "settings": "Ustawienia",
+  "@settings": {
+    "description": "Settings label"
+  },
+  "history": "Historia",
+  "@history": {
+    "description": "History label"
+  },
+  "savedVideosTitle": "Zapisane filmy",
+  "@savedVideosTitle": {
+    "description": "Saved videos app bar title"
+  },
+  "noUploaderName": "Brak nazwy",
+  "@noUploaderName": {
+    "description": "There is no uploader (channel) name available"
+  },
+  "noVideoTitle": "Brak tytułu",
+  "@noVideoTitle": {
+    "description": "There is no video title available"
+  },
+  "videoViews": "{count, plural, =0{Brak widzów} =1{widz} other{widzów}}",
+  "@videoViews": {
+    "description": "{number} views"
+  },
+  "channelSubscribers": "{count, plural, =0{Brak subskrybentów} =1{subskrybent} other{subskrybentów}}",
+  "@channelSubscribers": {
+    "description": "{number} subscribers"
+  },
+  "subscribe": "Subskrybuj",
+  "@subscribe": {
+    "description": "Subscribe button label"
+  },
+  "noUploadDate": "Brak daty",
+  "@noUploadDate": {
+    "description": "There is no video upload date available"
+  },
+  "thereIsNoSavedVideos": "Nie masz zapisanych filmów",
+  "@thereIsNoSavedVideos": {
+    "description": "There are no saved videos found"
+  },
+  "thereIsNoSavedOrHistoryVideos": "Nie masz zapisanych filmów i historii",
+  "@thereIsNoSavedHistoryVideos": {
+    "description": "There are no saved or history videos"
+  },
+  "noVideoAvailableChangedToHls": "Brak dostępnego źródła, automatycznie zmienianie na hls",
+  "@noVideoAvailableChangedToHls": {
+    "description": "When there is no standard player link available, then it changed to hls player"
+  },
+  "unknownQuality": "Nieznana jakość",
+  "@unknownQuality": {
+    "description": "Quality name not found"
+  },
+  "hlsPlayer": "Odtwarzacz Hls",
+  "@hlsPlayer": {
+    "description": "Hls player label"
+  },
+  "enableHlsPlayerDescription": "Włącz odtwarzacz HLS, aby odblokować wszystkie opcje jakości. Wyłącz, jeśli wystąpią błędy.",
+  "@enableHlsPlayerDescription": {
+    "description": "Enabling HLS player may slow down performance but unlocks all quality options. Disable this setting if errors occur."
+  },
+  "disableVideoHistory": "Wyłącz historię filmów",
+  "@disableVideoHistory": {
+    "description": "Hide watch history"
+  },
+  "retrieveDislikes": "Przywróć łapki w dół",
+  "@retrieveDislikes": {
+    "description": "Retrieve dislikes label"
+  },
+  "retrieveDislikeCounts": "Liczba przywróconych łapek w dół",
+  "@retrieveDislikeCounts": {
+    "description": "Return the dislike button of videos"
+  },
+  "noVideoDescription": "Brak opisu",
+  "@noVideoDescription": {
+    "description": "There is no video description available"
+  },
+  "relatedTitle": "Powiązane",
+  "@relatedTitle": {
+    "description": "Related videos label"
+  },
+  "commentAuthorNotFound": "Nie znaleziono",
+  "@commentAuthorNotFound": {
+    "description": "Name of the comment author is not found"
+  },
+  "readMoreText": "Więcej",
+  "@readMoreText": {
+    "description": "Expand the comment text"
+  },
+  "showLessText": "Pokaż mniej",
+  "@showLessText": {
+    "description": "Collapse the comment text"
+  },
+  "commonSettingsTitle": "Zwykłe",
+  "@commonSettingsTitle": {
+    "description": "Common settings label"
+  },
+  "language": "Język",
+  "@language": {
+    "description": "Language label"
+  },
+  "region": "Region",
+  "@region": {
+    "description": "Region label"
+  },
+  "theme": "Motyw",
+  "@theme": {
+    "description": "Theme label"
+  },
+  "developer": "Programista",
+  "@developer": {
+    "description": "Developer label"
+  },
+  "translators": "Tłumacze",
+  "@translators": {
+    "description": "Translators label"
+  },
+  "version": "Wersja",
+  "@version": {
+    "description": "Version label"
+  },
+  "about": "Informacje",
+  "@about": {
+    "description": "About label"
+  },
+  "video": "Film",
+  "@video": {
+    "description": "Video label"
+  },
+  "unknown": "nieznana",
+  "@unknown": {
+    "description": "Unknown label"
+  },
+  "defaultQuality": "Domyślna jakość",
+  "@defaultQuality": {
+    "description": "Default video quality label"
+  },
+  "retry": "Ponów",
+  "@retry": {
+    "description": "Retry label"
+  },
+  "repliesPlural": "{count, plural, =1{odpowiedź} other{odpowiedzi}}",
+  "@repliesPlural": {
+    "description": "{number} Replies"
+  },
+  "canada": "Kanada",
+  "france": "Francja",
+  "india": "Indie",
+  "netherlands": "Holandia",
+  "unitedKingdom": "Wielka Brytania",
+  "unitedStates": "Stany Zjednoczone",
+  "distractionFree": "Tryb skupienia",
+  "@distractionFree": {
+    "description": "A section for control distracting elements."
+  },
+  "hideComments": "Ukryj komentarze",
+  "@hideComments": {
+    "description": "Hide Comments label."
+  },
+  "hideCommentsButtonFromWatchScreen": "Ukryj przycisk komentarzy z ekranu oglądania",
+  "@hideCommentsButtonFromWatchScreen": {
+    "description": "Hide the comment button from video streaming screen."
+  },
+  "hideRelated": "Ukryj powiązane",
+  "@hideRelated": {
+    "description": "Hide Related videos label."
+  },
+  "hideRelatedVideosFromWatchScreen": "Ukryj powiązane filmy z ekranu oglądania",
+  "@hideRelatedVideosFromWatchScreen": {
+    "description": "Hide the related videos from video streaming screen."
+  },
+  "share": "Udostępnij",
+  "@share": {
+    "description": "Share label."
+  },
+  "includeTitle": "Zawiera tytuł",
+  "@includeTitle": {
+    "description": "Include title along with url"
+  },
+  "instances": "Wystąpienia",
+  "switchRegion": "Rozważ zmianę regionu, aby uzyskać lepsze wyniki.",
+  "swipeDownToDismissDisabled": "Funkcja „Przesuń w dół, aby odrzucić” wyłączona",
+  "swipeUpToDismissEnabled": "Funkcja „Przesuń w dół, aby odrzucić” włączona",
+  "noCommentsFound": "Nie znaleziono komentarzy",
+  "disablePipPlayer": "Wyłącz obraz w obrazie"
+}
