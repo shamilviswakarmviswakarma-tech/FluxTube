@@ -1,4 +1,4 @@
-name: Android Draft Release
+name: NovaTube Android Release
 
 on:
   push:
@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   build-android:
-    name: Build signed APKs
+    name: Build NovaTube APKs
     runs-on: ubuntu-latest
     env:
       GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dkotlin.daemon.jvm.options=-Xmx2048m,-XX:-UseParallelGC"
@@ -139,7 +139,7 @@ jobs:
         run: |
           set -euo pipefail
           version="$(grep '^version:' pubspec.yaml | awk '{print $2}')"
-          tag="v${version//+/-}-run-${GITHUB_RUN_NUMBER}"
+          tag="novatube-v${version//+/-}-run-${GITHUB_RUN_NUMBER}"
           echo "version=${version}" >> "${GITHUB_OUTPUT}"
           echo "tag=${tag}" >> "${GITHUB_OUTPUT}"
 
@@ -148,7 +148,7 @@ jobs:
         run: |
           set -euo pipefail
           {
-            echo "Automated Android build for ${GITHUB_SHA}."
+            echo "Automated NovaTube Android build for ${GITHUB_SHA}."
             echo
             echo "Included APKs:"
             find dist -maxdepth 1 -name '*.apk' -printf "- %f\n" | sort
@@ -163,5 +163,5 @@ jobs:
         run: |
           gh release create "${{ steps.app_version.outputs.tag }}" dist/*.apk \
             --draft \
-            --title "FluxTube ${{ steps.app_version.outputs.version }}" \
+            --title "NovaTube ${{ steps.app_version.outputs.version }}" \
             --notes-file RELEASE_NOTES.md
