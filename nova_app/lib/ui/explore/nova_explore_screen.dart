@@ -122,7 +122,7 @@ class _NovaExploreScreenState extends State<NovaExploreScreen> {
                         TextStyle(color: NovaColors.secondaryText, height: 1.4),
                   ),
                   const SizedBox(height: 24),
-                  _SectionTitle(
+                  const _SectionTitle(
                     title: 'Browse categories',
                     subtitle: 'Pick a subject to get started',
                   ),
@@ -156,7 +156,7 @@ class _NovaExploreScreenState extends State<NovaExploreScreen> {
                     },
                   ),
                   const SizedBox(height: 28),
-                  _SectionTitle(
+                  const _SectionTitle(
                     title: 'Curated for curious minds',
                     subtitle: 'Hand-picked paths through interesting subjects',
                     trailing: 'View all',
@@ -176,7 +176,7 @@ class _NovaExploreScreenState extends State<NovaExploreScreen> {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  _SectionTitle(
+                  const _SectionTitle(
                     title: 'Trending topics',
                     subtitle: 'What people are exploring',
                   ),
@@ -202,7 +202,7 @@ class _NovaExploreScreenState extends State<NovaExploreScreen> {
                     }).toList(),
                   ),
                   const SizedBox(height: 28),
-                  _SectionTitle(
+                  const _SectionTitle(
                     title: 'Explore by mood',
                     subtitle: 'Choose the kind of watch you want',
                   ),
