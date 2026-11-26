@@ -246,7 +246,11 @@ class _NovaSearchScreenState extends State<NovaSearchScreen> {
                           ),
                         ),
                         const SizedBox(height: 18),
-                        _RecentSearchCard(onSelect: _submit),
+                        _RecentSearchCard(
+                          searches: _recentSearches,
+                          onSelect: _submit,
+                          onClear: () => setState(_recentSearches.clear),
+                        ),
                       ],
                       if (_query.isNotEmpty) ...[
                         const SizedBox(height: 20),
