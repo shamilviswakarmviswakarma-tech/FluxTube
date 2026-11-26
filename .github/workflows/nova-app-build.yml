@@ -37,7 +37,7 @@ jobs:
       - name: Generate Android platform scaffold
         run: flutter create --platforms=android --project-name novatube_app .
 
-      - name: Resolve dependencies
+      - name: Apply NovaTube Android PiP configuration\n        run: bash tool/apply_android_pip.sh\n\n      - name: Resolve dependencies
         run: flutter pub get
 
       - name: Apply canonical Dart formatting
