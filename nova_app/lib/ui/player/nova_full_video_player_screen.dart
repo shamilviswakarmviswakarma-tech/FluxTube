@@ -61,7 +61,9 @@ class _NovaFullVideoPlayerScreenState extends State<NovaFullVideoPlayerScreen> {
   Future<void> _loadBackgroundMode() async {
     try {
       final mode = await _backgroundChannel.invokeMethod<String>('getMode');
-      if (mounted && mode != null) setState(() => _backgroundMode = mode);
+      if (mounted && mode != null) {
+        setState(() => _backgroundMode = mode);
+      }
     } on PlatformException {
       // Native background playback is unavailable in widget previews.
     } on MissingPluginException {
@@ -72,9 +74,12 @@ class _NovaFullVideoPlayerScreenState extends State<NovaFullVideoPlayerScreen> {
   Future<void> _setBackgroundMode(String mode) async {
     try {
       await _backgroundChannel.invokeMethod<bool>('setMode', <String, Object>{'mode': mode});
-      if (mounted) setState(() => _backgroundMode = mode);
+      if (mounted) {
+        setState(() => _backgroundMode = mode);
+      }
     } on PlatformException {
-      if (mounted) ScaffoldMessenger.of(context).showSnackBar(
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Background Play settings are unavailable on this device.')),
       );
     } on MissingPluginException {
@@ -445,7 +450,9 @@ class _NovaFullVideoPlayerScreenState extends State<NovaFullVideoPlayerScreen> {
                       groupValue: _backgroundMode,
                       onChanged: (value) {
                         Navigator.pop(dialogContext);
-                        _setBackgroundMode(value);
+                        if (value != null) {
+          _setBackgroundMode(value);
+        }
                       },
                       child: const Column(
                         mainAxisSize: MainAxisSize.min,
