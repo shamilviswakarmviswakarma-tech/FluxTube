@@ -2,10 +2,10 @@ import 'model/app_info_model.dart';
 
 class AppInfo {
   static final myApp = AppInfoModel(
-    name: 'FluxTube',
-    nickname: 'fluxtube',
-    url: 'https://github.com/mu-fazil-vk/fluxtube',
-    description: 'Watch and download videos without ads',
+    name: 'NovaTube',
+    nickname: 'novatube',
+    url: 'https://github.com/shamilviswakarmviswakarma-tech/FluxTube',
+    description: 'A customizable video experience with smart playback and learning tools',
     image: 'fluxtube.png',
   );
 
