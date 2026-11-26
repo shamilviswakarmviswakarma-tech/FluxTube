@@ -358,8 +358,8 @@ class _NovaFullVideoPlayerScreenState extends State<NovaFullVideoPlayerScreen> {
                 _showSpeedPicker();
               },
             ),
-            ListTile(
-              leading: const Icon(Icons.screen_rotation_rounded),
+            const ListTile(
+              leading: Icon(Icons.screen_rotation_rounded),
               title: const Text('Screen orientation'),
               subtitle:
                   const Text('Device orientation controls are not connected'),
