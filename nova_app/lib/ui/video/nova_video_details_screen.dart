@@ -286,9 +286,9 @@ class _ActionRow extends StatelessWidget {
           icon: const Icon(Icons.play_arrow_rounded),
           label: const Text('Play video'),
         ),
-        _PillAction(icon: Icons.thumb_up_alt_outlined, label: 'Like'),
-        _PillAction(icon: Icons.bookmark_border_rounded, label: 'Save'),
-        _PillAction(icon: Icons.download_outlined, label: 'Download'),
+        const _PillAction(icon: Icons.thumb_up_alt_outlined, label: 'Like'),
+        const _PillAction(icon: Icons.bookmark_border_rounded, label: 'Save'),
+        const _PillAction(icon: Icons.download_outlined, label: 'Download'),
       ],
     );
   }
