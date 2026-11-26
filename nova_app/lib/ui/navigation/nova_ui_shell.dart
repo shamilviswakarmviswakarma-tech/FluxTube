@@ -4,6 +4,7 @@ import '../../features/library/library_page.dart';
 import '../../features/profile/profile_page.dart';
 import '../search/nova_search_screen.dart';
 import '../video/nova_video_details_screen.dart';
+import '../player/nova_full_video_player_screen.dart';
 import '../explore/nova_explore_screen.dart';
 import '../home/nova_home_screen.dart';
 import '../../app/theme/nova_theme.dart';
@@ -32,9 +33,13 @@ class _NovaUiShellState extends State<NovaUiShell> {
         builder: (_) => NovaVideoDetailsScreen(
           videoId: videoId,
           onRelatedVideoTap: _openVideo,
-          onPlay: () => ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-                content: Text('Full Video Player is the next UI step.')),
+          onPlay: () => Navigator.of(context).push(
+            MaterialPageRoute<void>(
+              builder: (_) => NovaFullVideoPlayerScreen(
+                videoId: videoId,
+                title: 'NovaTube video preview',
+              ),
+            ),
           ),
         ),
       ),
