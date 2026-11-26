@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:novatube_app/main.dart';
+import 'package:novatube_app/app/nova_app.dart';
 
 void main() {
   testWidgets('NovaTube opens with five-tab navigation', (tester) async {
