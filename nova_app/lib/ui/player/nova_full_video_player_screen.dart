@@ -89,8 +89,7 @@ class _NovaFullVideoPlayerScreenState extends State<NovaFullVideoPlayerScreen> {
                   padding: const EdgeInsets.all(18),
                   child: _PlayerSidePanel(
                     captions: _captions,
-                    onCaptionTap: () =>
-                        setState(() => _captions = !_captions),
+                    onCaptionTap: () => setState(() => _captions = !_captions),
                     onSeek: _seek,
                   ),
                 ),
@@ -121,8 +120,8 @@ class _NovaFullVideoPlayerScreenState extends State<NovaFullVideoPlayerScreen> {
           if (_locked) return;
           final width = context.size?.width ?? 1;
           if (details.localPosition.dx > width / 2) {
-            setState(() => _volume =
-                (_volume - details.delta.dy / 250).clamp(0.0, 1.0));
+            setState(() =>
+                _volume = (_volume - details.delta.dy / 250).clamp(0.0, 1.0));
           }
         },
         child: Stack(
@@ -137,8 +136,8 @@ class _NovaFullVideoPlayerScreenState extends State<NovaFullVideoPlayerScreen> {
                 ),
               ),
               child: Center(
-                child: Icon(Icons.movie_outlined,
-                    size: 76, color: Colors.white24),
+                child:
+                    Icon(Icons.movie_outlined, size: 76, color: Colors.white24),
               ),
             ),
             if (_showControls)
@@ -181,8 +180,7 @@ class _NovaFullVideoPlayerScreenState extends State<NovaFullVideoPlayerScreen> {
                         const SizedBox(width: 24),
                         IconButton(
                           tooltip: _playing ? 'Pause' : 'Play',
-                          onPressed: () =>
-                              setState(() => _playing = !_playing),
+                          onPressed: () => setState(() => _playing = !_playing),
                           icon: Icon(
                             _playing
                                 ? Icons.pause_circle_filled_rounded
@@ -233,8 +231,8 @@ class _NovaFullVideoPlayerScreenState extends State<NovaFullVideoPlayerScreen> {
                             children: [
                               IconButton(
                                 tooltip: 'Captions',
-                                onPressed: () => setState(
-                                    () => _captions = !_captions),
+                                onPressed: () =>
+                                    setState(() => _captions = !_captions),
                                 color: _captions
                                     ? NovaColors.bright
                                     : Colors.white,
@@ -242,8 +240,8 @@ class _NovaFullVideoPlayerScreenState extends State<NovaFullVideoPlayerScreen> {
                               ),
                               IconButton(
                                 tooltip: 'Volume',
-                                onPressed: () => setState(() =>
-                                    _volume = _volume == 0 ? .7 : 0),
+                                onPressed: () => setState(
+                                    () => _volume = _volume == 0 ? .7 : 0),
                                 color: Colors.white,
                                 icon: Icon(_volume == 0
                                     ? Icons.volume_off_rounded
@@ -363,7 +361,8 @@ class _NovaFullVideoPlayerScreenState extends State<NovaFullVideoPlayerScreen> {
             ListTile(
               leading: const Icon(Icons.screen_rotation_rounded),
               title: const Text('Screen orientation'),
-              subtitle: const Text('Device orientation controls are not connected'),
+              subtitle:
+                  const Text('Device orientation controls are not connected'),
             ),
           ],
         ),
@@ -408,8 +407,7 @@ class _PlayerSidePanel extends StatelessWidget {
           subtitle: 'Summaries, notes and study tools',
         ),
         const SizedBox(height: 16),
-        const Text('Quick seek',
-            style: TextStyle(fontWeight: FontWeight.w700)),
+        const Text('Quick seek', style: TextStyle(fontWeight: FontWeight.w700)),
         const SizedBox(height: 8),
         Wrap(
           spacing: 8,
