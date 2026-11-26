@@ -301,7 +301,7 @@ class _SectionTitle extends StatelessWidget {
             children: [
               Text(title,
                   style: const TextStyle(
-                      fontSize: 18, fontWeight: FontWeight.w750)),
+                      fontSize: 18, fontWeight: FontWeight.w700)),
               const SizedBox(height: 4),
               Text(subtitle,
                   style:
@@ -369,7 +369,7 @@ class _CategoryTile extends StatelessWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
-                      fontWeight: FontWeight.w650, fontSize: 13),
+                      fontWeight: FontWeight.w600, fontSize: 13),
                 ),
               ),
             ],
