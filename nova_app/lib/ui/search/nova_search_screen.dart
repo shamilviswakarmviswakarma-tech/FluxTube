@@ -160,16 +160,14 @@ class _NovaSearchScreenState extends State<NovaSearchScreen> {
                         child: ListView.separated(
                           scrollDirection: Axis.horizontal,
                           itemCount: _filters.length,
-                          separatorBuilder: (_, __) =>
-                              const SizedBox(width: 8),
+                          separatorBuilder: (_, __) => const SizedBox(width: 8),
                           itemBuilder: (context, index) {
                             final item = _filters[index];
                             final selected = _filter == item;
                             return ChoiceChip(
                               label: Text(item),
                               selected: selected,
-                              onSelected: (_) =>
-                                  setState(() => _filter = item),
+                              onSelected: (_) => setState(() => _filter = item),
                               showCheckmark: false,
                               selectedColor: NovaColors.primary,
                               backgroundColor: NovaColors.surface,
@@ -347,9 +345,7 @@ class _SuggestionPanel extends StatelessWidget {
     final matches = _NovaSearchScreenState._suggestions
         .where((item) => item.toLowerCase().contains(query.toLowerCase()))
         .toList();
-    final suggestions = matches.isEmpty
-        ? ['Search for “$query”']
-        : matches;
+    final suggestions = matches.isEmpty ? ['Search for “$query”'] : matches;
     return Container(
       margin: const EdgeInsets.only(top: 10),
       decoration: BoxDecoration(
@@ -368,9 +364,7 @@ class _SuggestionPanel extends StatelessWidget {
                 ),
                 title: Text(item),
                 onTap: () => onSelected(
-                  item.startsWith('Search for “')
-                      ? query
-                      : item,
+                  item.startsWith('Search for “') ? query : item,
                 ),
               ),
             )
