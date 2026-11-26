@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'navigation/nova_shell.dart';
+import '../ui/navigation/nova_ui_shell.dart';
 import 'theme/nova_theme.dart';
 
 class NovaTubeApp extends StatelessWidget {
@@ -14,7 +14,7 @@ class NovaTubeApp extends StatelessWidget {
       theme: NovaTheme.dark(),
       darkTheme: NovaTheme.dark(),
       themeMode: ThemeMode.dark,
-      home: const NovaShell(),
+      home: const NovaUiShell(),
     );
   }
 }
