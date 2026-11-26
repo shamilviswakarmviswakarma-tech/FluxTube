@@ -44,7 +44,7 @@ class FluxTubeAppBar extends StatelessWidget implements PreferredSizeWidget {
               AppSpacing.width8,
               Expanded(
                 child: Text(
-                  'FLUXTUBE',
+                  'NOVATUBE',
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
