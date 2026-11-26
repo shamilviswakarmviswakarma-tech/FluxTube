@@ -50,4 +50,28 @@ void main() {
     expect(find.text('Chapters'), findsOneWidget);
     expect(find.text('Up next'), findsOneWidget);
   });
+
+  testWidgets('Video details opens full player and playback controls render',
+      (tester) async {
+    tester.view.physicalSize = const Size(900, 1600);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+
+    await tester.pumpWidget(const NovaTubeApp());
+    await tester.tap(find.text('Search'));
+    await tester.pumpAndSettle();
+    await tester.enterText(find.byType(TextField), 'Flutter');
+    await tester.testTextInput.receiveAction(TextInputAction.search);
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Build a beautiful Flutter app from scratch'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Play video'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Playback tools'), findsOneWidget);
+    expect(find.byTooltip('Pause'), findsOneWidget);
+    expect(find.text('Captions'), findsOneWidget);
+    expect(find.text('Transcript'), findsOneWidget);
+  });
 }
