@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../features/library/library_page.dart';
 import '../../features/profile/profile_page.dart';
 import '../search/nova_search_screen.dart';
+import '../video/nova_video_details_screen.dart';
 import '../explore/nova_explore_screen.dart';
 import '../home/nova_home_screen.dart';
 import '../../app/theme/nova_theme.dart';
@@ -18,12 +19,26 @@ class _NovaUiShellState extends State<NovaUiShell> {
   int _selectedIndex = 0;
 
   late final List<Widget> _pages = [
-    const NovaHomeScreen(),
-    const NovaExploreScreen(),
-    const NovaSearchScreen(),
+    NovaHomeScreen(onVideoTap: _openVideo),
+    NovaExploreScreen(onVideoTap: _openVideo),
+    NovaSearchScreen(onVideoTap: _openVideo),
     const LibraryPage(),
     const ProfilePage(),
   ];
+
+  void _openVideo(String videoId) {
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => NovaVideoDetailsScreen(
+          videoId: videoId,
+          onRelatedVideoTap: _openVideo,
+          onPlay: () => ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Full Video Player is the next UI step.')),
+          ),
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
