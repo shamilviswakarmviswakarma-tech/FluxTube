@@ -72,7 +72,7 @@ class _SearchPageState extends State<SearchPage> {
                   label: Text(filter),
                   selected: selected,
                   onSelected: (_) => setState(() => _selectedFilter = filter),
-                  selectedColor: NovaColors.electricBlue,
+                  selectedColor: NovaColors.primary,
                   backgroundColor: NovaColors.surface,
                   labelStyle: TextStyle(
                     color: selected ? Colors.white : NovaColors.secondaryText,
