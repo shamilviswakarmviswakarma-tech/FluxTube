@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../app/theme/nova_theme.dart';
 
@@ -22,6 +23,40 @@ class _NovaFullVideoPlayerScreenState extends State<NovaFullVideoPlayerScreen> {
   bool _showControls = true;
   bool _captions = false;
   bool _locked = false;
+  bool _pipEnabled = true;
+
+  static const MethodChannel _pipChannel =
+      MethodChannel('com.novatube.app/picture_in_picture');
+
+  @override
+  void initState() {
+    super.initState();
+    _updatePipAvailability(true);
+  }
+
+  @override
+  void dispose() {
+    _updatePipAvailability(false);
+    super.dispose();
+  }
+
+  Future<void> _updatePipAvailability(bool enabled) async {
+    try {
+      await _pipChannel.invokeMethod<bool>(
+        'setEnabled',
+        <String, Object>{'enabled': enabled && _pipEnabled},
+      );
+    } on PlatformException {
+      // PiP is optional on unsupported Android versions and test platforms.
+    } on MissingPluginException {
+      // The preview remains usable when the native Android bridge is absent.
+    }
+  }
+
+  void _togglePip(bool enabled) {
+    setState(() => _pipEnabled = enabled);
+    _updatePipAvailability(enabled);
+  }
   double _progress = 0.28;
   double _speed = 1;
   double _volume = 0.7;
