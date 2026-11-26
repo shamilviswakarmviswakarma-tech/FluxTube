@@ -14,7 +14,8 @@ class HomePage extends StatelessWidget {
             pinned: true,
             title: const Text(
               'NovaTube',
-              style: TextStyle(fontWeight: FontWeight.w800, letterSpacing: -0.5),
+              style:
+                  TextStyle(fontWeight: FontWeight.w800, letterSpacing: -0.5),
             ),
             actions: [
               IconButton(
