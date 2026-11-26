@@ -35,32 +35,36 @@ jobs:
           flutter-version: "3.47.1"
           cache: true
 
-      - name: Restore Android signing files
+      - name: Restore Android signing files (optional)
+        id: signing
         shell: bash
         env:
-          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
-          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
-          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
-          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEYSTORE_BASE64: \${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          ANDROID_KEYSTORE_PASSWORD: \${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_PASSWORD: \${{ secrets.ANDROID_KEY_PASSWORD }}
+          ANDROID_KEY_ALIAS: \${{ secrets.ANDROID_KEY_ALIAS }}
         run: |
           set -euo pipefail
 
-          if [[ -z "${ANDROID_KEYSTORE_BASE64}" || -z "${ANDROID_KEYSTORE_PASSWORD}" || -z "${ANDROID_KEY_PASSWORD}" || -z "${ANDROID_KEY_ALIAS}" ]]; then
-            echo "Missing Android signing secrets." >&2
-            exit 1
+          if [[ -z "\${ANDROID_KEYSTORE_BASE64}" || -z "\${ANDROID_KEYSTORE_PASSWORD}" || -z "\${ANDROID_KEY_PASSWORD}" || -z "\${ANDROID_KEY_ALIAS}" ]]; then
+            echo "Android signing secrets are not configured; building an unsigned release APK."
+            echo "enabled=false" >> "\${GITHUB_OUTPUT}"
+            exit 0
           fi
 
           mkdir -p android/app
-          printf '%s' "${ANDROID_KEYSTORE_BASE64}" | base64 --decode > android/app/key.jks
+          printf '%s' "\${ANDROID_KEYSTORE_BASE64}" | base64 --decode > android/app/key.jks
 
           {
-            printf 'storePassword=%s\n' "${ANDROID_KEYSTORE_PASSWORD}"
-            printf 'keyPassword=%s\n' "${ANDROID_KEY_PASSWORD}"
-            printf 'keyAlias=%s\n' "${ANDROID_KEY_ALIAS}"
-            printf 'storeFile=key.jks\n'
+            printf 'storePassword=%s\\n' "\${ANDROID_KEYSTORE_PASSWORD}"
+            printf 'keyPassword=%s\\n' "\${ANDROID_KEY_PASSWORD}"
+            printf 'keyAlias=%s\\n' "\${ANDROID_KEY_ALIAS}"
+            printf 'storeFile=key.jks\\n'
           } > android/key.properties
+          echo "enabled=true" >> "\${GITHUB_OUTPUT}"
 
       - name: Verify signing key fingerprint
+        if: steps.signing.outputs.enabled == 'true'
         shell: bash
         env:
           ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
@@ -108,6 +112,7 @@ jobs:
           ls -lah dist
 
       - name: Verify APK signing certificates
+        if: steps.signing.outputs.enabled == 'true'
         shell: bash
         env:
           EXPECTED_CERT_SHA256: ${{ secrets.ANDROID_CERT_SHA256 }}
