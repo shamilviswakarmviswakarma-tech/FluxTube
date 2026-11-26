@@ -33,7 +33,8 @@ class _NovaUiShellState extends State<NovaUiShell> {
           videoId: videoId,
           onRelatedVideoTap: _openVideo,
           onPlay: () => ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Full Video Player is the next UI step.')),
+            const SnackBar(
+                content: Text('Full Video Player is the next UI step.')),
           ),
         ),
       ),

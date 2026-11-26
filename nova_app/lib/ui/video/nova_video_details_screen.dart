@@ -340,7 +340,8 @@ class _DescriptionCard extends StatelessWidget {
           ),
           SizedBox(height: 12),
           Text('Show more',
-              style: TextStyle(color: NovaColors.bright, fontWeight: FontWeight.w700)),
+              style: TextStyle(
+                  color: NovaColors.bright, fontWeight: FontWeight.w700)),
         ],
       ),
     );
