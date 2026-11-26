@@ -30,4 +30,24 @@ void main() {
         findsOneWidget);
     expect(find.text('Artificial Intelligence explained simply'), findsNothing);
   });
+  testWidgets('Search result opens responsive video details', (tester) async {
+    await tester.view.setPhysicalSize(const Size(900, 1600));
+    await tester.view.setDevicePixelRatio(1);
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+
+    await tester.pumpWidget(const NovaTubeApp());
+    await tester.tap(find.text('Search'));
+    await tester.pumpAndSettle();
+    await tester.enterText(find.byType(TextField), 'Flutter');
+    await tester.testTextInput.receiveAction(TextInputAction.search);
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Build a beautiful Flutter app from scratch'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Video details'), findsOneWidget);
+    expect(find.text('About this video'), findsOneWidget);
+    expect(find.text('Chapters'), findsOneWidget);
+    expect(find.text('Up next'), findsOneWidget);
+  });
 }
