@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../features/library/library_page.dart';
 import '../../features/profile/profile_page.dart';
-import '../../features/search/search_page.dart';
+import '../search/nova_search_screen.dart';
 import '../explore/nova_explore_screen.dart';
 import '../home/nova_home_screen.dart';
 import '../../app/theme/nova_theme.dart';
@@ -20,7 +20,7 @@ class _NovaUiShellState extends State<NovaUiShell> {
   late final List<Widget> _pages = [
     const NovaHomeScreen(),
     const NovaExploreScreen(),
-    const SearchPage(),
+    const NovaSearchScreen(),
     const LibraryPage(),
     const ProfilePage(),
   ];
