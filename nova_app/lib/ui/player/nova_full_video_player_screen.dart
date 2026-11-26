@@ -360,9 +360,8 @@ class _NovaFullVideoPlayerScreenState extends State<NovaFullVideoPlayerScreen> {
             ),
             const ListTile(
               leading: Icon(Icons.screen_rotation_rounded),
-              title: const Text('Screen orientation'),
-              subtitle:
-                  const Text('Device orientation controls are not connected'),
+              title: Text('Screen orientation'),
+              subtitle: Text('Device orientation controls are not connected'),
             ),
           ],
         ),
