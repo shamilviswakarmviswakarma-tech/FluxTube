@@ -31,8 +31,8 @@ void main() {
     expect(find.text('Artificial Intelligence explained simply'), findsNothing);
   });
   testWidgets('Search result opens responsive video details', (tester) async {
-    await tester.view.setPhysicalSize(const Size(900, 1600));
-    await tester.view.setDevicePixelRatio(1);
+    await tester.view.physicalSize = const Size(900, 1600);
+    await tester.view.devicePixelRatio = 1;
     addTearDown(tester.view.resetPhysicalSize);
     addTearDown(tester.view.resetDevicePixelRatio);
 
