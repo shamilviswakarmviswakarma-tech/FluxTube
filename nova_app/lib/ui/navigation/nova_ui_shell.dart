@@ -5,7 +5,7 @@ import '../../features/profile/profile_page.dart';
 import '../../features/search/search_page.dart';
 import '../explore/nova_explore_screen.dart';
 import '../home/nova_home_screen.dart';
-import '../theme/nova_theme.dart';
+import '../../app/theme/nova_theme.dart';
 
 class NovaUiShell extends StatefulWidget {
   const NovaUiShell({super.key});
