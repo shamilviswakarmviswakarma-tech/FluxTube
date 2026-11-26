@@ -20,6 +20,7 @@ class _NovaSearchScreenState extends State<NovaSearchScreen> {
   bool _filtersExpanded = false;
   String _sort = 'Relevance';
   String _duration = 'Any duration';
+  final List<String> _recentSearches = [];
 
   static const _filters = ['All', 'Videos', 'Channels', 'Playlists'];
   static const _suggestions = [
@@ -88,6 +89,9 @@ class _NovaSearchScreenState extends State<NovaSearchScreen> {
     final query = value.trim();
     if (query.isEmpty) return;
     setState(() {
+      _recentSearches.remove(query);
+      _recentSearches.insert(0, query);
+      if (_recentSearches.length > 5) _recentSearches.removeLast();
       _query = query;
       _controller.text = query;
       _showSuggestions = false;
@@ -117,8 +121,29 @@ class _NovaSearchScreenState extends State<NovaSearchScreen> {
               item.title.toLowerCase().contains(q) ||
               item.channel.toLowerCase().contains(q) ||
               item.category.toLowerCase().contains(q);
-          return matchesFilter && matchesQuery;
-        }).toList();
+          final minutes = _durationMinutes(item.duration);
+          final matchesDuration = switch (_duration) {
+            'Under 4 min' => minutes != null && minutes < 4,
+            '4–20 min' => minutes != null && minutes >= 4 && minutes <= 20,
+            'Over 20 min' => minutes != null && minutes > 20,
+            _ => true,
+          };
+          return matchesFilter && matchesQuery && matchesDuration;
+        }).toList()
+          ..sort((a, b) {
+            switch (_sort) {
+              case 'Title A–Z':
+                return a.title.compareTo(b.title);
+              case 'Shortest':
+                return (_durationMinutes(a.duration) ?? 0)
+                    .compareTo(_durationMinutes(b.duration) ?? 0);
+              case 'Longest':
+                return (_durationMinutes(b.duration) ?? 0)
+                    .compareTo(_durationMinutes(a.duration) ?? 0);
+              default:
+                return 0;
+            }
+          });
 
         return SafeArea(
           child: CustomScrollView(
@@ -393,9 +418,15 @@ class _TrendingSearchTile extends StatelessWidget {
 }
 
 class _RecentSearchCard extends StatelessWidget {
-  const _RecentSearchCard({required this.onSelect});
+  const _RecentSearchCard({
+    required this.searches,
+    required this.onSelect,
+    required this.onClear,
+  });
 
+  final List<String> searches;
   final ValueChanged<String> onSelect;
+  final VoidCallback onClear;
 
   @override
   Widget build(BuildContext context) {
@@ -410,27 +441,39 @@ class _RecentSearchCard extends StatelessWidget {
         children: [
           const Icon(Icons.history_rounded, color: NovaColors.bright, size: 25),
           const SizedBox(width: 12),
-          const Expanded(
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const Text('Recent searches',
+                    style: TextStyle(fontWeight: FontWeight.w700)),
+                const SizedBox(height: 4),
                 Text(
-                  'Pick up where curiosity left off',
-                  style: TextStyle(fontWeight: FontWeight.w700),
-                ),
-                SizedBox(height: 4),
-                Text(
-                  'Your recent searches will appear here',
-                  style: TextStyle(color: NovaColors.muted, fontSize: 11),
+                  searches.isEmpty
+                      ? 'Your searches from this session appear here'
+                      : searches.take(3).join('  •  '),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    color: NovaColors.muted,
+                    fontSize: 11,
+                  ),
                 ),
               ],
             ),
           ),
-          IconButton(
-            tooltip: 'Try a suggestion',
-            onPressed: () => onSelect('Artificial intelligence'),
-            icon: const Icon(Icons.arrow_forward_rounded),
-          ),
+          if (searches.isNotEmpty)
+            IconButton(
+              tooltip: 'Clear recent searches',
+              onPressed: onClear,
+              icon: const Icon(Icons.delete_outline_rounded),
+            )
+          else
+            IconButton(
+              tooltip: 'Try a suggestion',
+              onPressed: () => onSelect('Artificial intelligence'),
+              icon: const Icon(Icons.arrow_forward_rounded),
+            ),
         ],
       ),
     );
@@ -466,7 +509,7 @@ class _AdvancedFilters extends StatelessWidget {
           const SizedBox(height: 8),
           Wrap(
             spacing: 8,
-            children: ['Relevance', 'Upload date', 'View count', 'Rating']
+            children: ['Relevance', 'Title A–Z', 'Shortest', 'Longest']
                 .map(
                   (value) => ChoiceChip(
                     label: Text(value),
@@ -690,6 +733,13 @@ class _EmptyResults extends StatelessWidget {
       ),
     );
   }
+}
+
+int? _durationMinutes(String duration) {
+  if (duration.isEmpty) return null;
+  final parts = duration.split(':');
+  if (parts.length != 2) return null;
+  return int.tryParse(parts.first);
 }
 
 class _SearchResult {
