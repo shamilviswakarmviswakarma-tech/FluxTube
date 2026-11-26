@@ -156,7 +156,7 @@ class _NovaExploreScreenState extends State<NovaExploreScreen> {
                     },
                   ),
                   const SizedBox(height: 28),
-                  const _SectionTitle(
+                  _SectionTitle(
                     title: 'Curated for curious minds',
                     subtitle: 'Hand-picked paths through interesting subjects',
                     trailing: 'View all',
