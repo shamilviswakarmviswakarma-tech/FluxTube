@@ -7,39 +7,39 @@ class LibraryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return const SafeArea(
       child: Padding(
-        padding: const EdgeInsets.all(20),
+        padding: EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 18),
-            const Text(
+            SizedBox(height: 18),
+            Text(
               'Library',
               style: TextStyle(fontSize: 28, fontWeight: FontWeight.w800),
             ),
-            const SizedBox(height: 8),
-            const Text(
+            SizedBox(height: 8),
+            Text(
               'Your saved videos and learning space',
               style: TextStyle(color: NovaColors.secondaryText),
             ),
-            const Spacer(),
-            const Center(
+            Spacer(),
+            Center(
               child: Icon(
                 Icons.video_library_rounded,
                 size: 54,
                 color: NovaColors.bright,
               ),
             ),
-            const SizedBox(height: 14),
-            const Center(
+            SizedBox(height: 14),
+            Center(
               child: Text(
                 'Your playlists, history and bookmarks will appear here.',
                 textAlign: TextAlign.center,
                 style: TextStyle(color: NovaColors.muted),
               ),
             ),
-            const Spacer(),
+            Spacer(),
           ],
         ),
       ),
