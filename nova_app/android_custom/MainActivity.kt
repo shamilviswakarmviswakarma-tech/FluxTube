@@ -2,6 +2,8 @@ package com.example.novatube_app
 
 import android.app.PictureInPictureParams
 import android.content.Intent
+import android.media.AudioDeviceInfo
+import android.media.AudioManager
 import android.content.pm.PackageManager
 import android.os.Build
 import android.util.Rational
@@ -37,6 +39,8 @@ class MainActivity : FlutterActivity() {
                             result.error("BACKGROUND_DISABLED", "Background Play is off", null)
                         } else if (uri.isNullOrBlank()) {
                             result.error("MISSING_MEDIA_URI", "A supported media stream URI is required", null)
+                        } else if (mode == "headphones" && !hasExternalAudioOutput()) {
+                            result.error("NO_EXTERNAL_AUDIO", "Connect headphones or an external speaker to use this mode", null)
                         } else {
                             val intent = Intent(this, NovaPlaybackService::class.java).apply {
                                 action = NovaPlaybackService.ACTION_PLAY
@@ -71,6 +75,18 @@ class MainActivity : FlutterActivity() {
                     else -> result.notImplemented()
                 }
             }
+    }
+
+    private fun hasExternalAudioOutput(): Boolean {
+        val audioManager = getSystemService(AUDIO_SERVICE) as AudioManager
+        return audioManager.getDevices(AudioManager.GET_DEVICES_OUTPUTS).any { device ->
+            device.type == AudioDeviceInfo.TYPE_WIRED_HEADPHONES ||
+                device.type == AudioDeviceInfo.TYPE_WIRED_HEADSET ||
+                device.type == AudioDeviceInfo.TYPE_USB_HEADSET ||
+                device.type == AudioDeviceInfo.TYPE_BLUETOOTH_A2DP ||
+                device.type == AudioDeviceInfo.TYPE_BLE_HEADSET ||
+                device.type == AudioDeviceInfo.TYPE_BLE_SPEAKER
+        }
     }
 
     private fun isPipSupported(): Boolean =

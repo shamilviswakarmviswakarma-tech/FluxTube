@@ -394,6 +394,51 @@ class _NovaFullVideoPlayerScreenState extends State<NovaFullVideoPlayerScreen> {
               onChanged: _togglePip,
             ),
             ListTile(
+              leading: const Icon(Icons.headphones_rounded),
+              title: const Text('Background Play'),
+              subtitle: Text(
+                _backgroundMode == 'always'
+                    ? 'Always on'
+                    : _backgroundMode == 'headphones'
+                        ? 'Headphones or external speakers'
+                        : 'Off',
+              ),
+              onTap: () {
+                Navigator.pop(context);
+                showDialog<void>(
+                  context: context,
+                  builder: (dialogContext) => AlertDialog(
+                    backgroundColor: NovaColors.surface,
+                    title: const Text('Background Play'),
+                    content: RadioGroup<String>(
+                      groupValue: _backgroundMode,
+                      onChanged: (value) {
+                        Navigator.pop(dialogContext);
+                        _setBackgroundMode(value);
+                      },
+                      child: const Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          RadioListTile<String>(
+                            value: 'always',
+                            title: Text('Always on'),
+                          ),
+                          RadioListTile<String>(
+                            value: 'headphones',
+                            title: Text('Headphones or external speakers'),
+                          ),
+                          RadioListTile<String>(
+                            value: 'off',
+                            title: Text('Off'),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+            ListTile(
               leading: const Icon(Icons.speed_rounded),
               title: const Text('Playback speed'),
               subtitle: Text('${_speed}x'),
