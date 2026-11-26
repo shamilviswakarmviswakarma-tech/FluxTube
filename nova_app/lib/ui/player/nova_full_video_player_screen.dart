@@ -384,6 +384,15 @@ class _NovaFullVideoPlayerScreenState extends State<NovaFullVideoPlayerScreen> {
                 },
               ),
             ),
+            SwitchListTile(
+              secondary: const Icon(Icons.picture_in_picture_alt_rounded),
+              title: const Text('Picture-in-Picture'),
+              subtitle: const Text(
+                'Keep watching in a floating window when you leave NovaTube',
+              ),
+              value: _pipEnabled,
+              onChanged: _togglePip,
+            ),
             ListTile(
               leading: const Icon(Icons.speed_rounded),
               title: const Text('Playback speed'),
