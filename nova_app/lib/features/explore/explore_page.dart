@@ -14,15 +14,28 @@ class ExplorePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 18),
-            Text('$title', style: const TextStyle(fontSize: 28, fontWeight: FontWeight.w800)),
+            const Text(
+              'Explore',
+              style: TextStyle(fontSize: 28, fontWeight: FontWeight.w800),
+            ),
             const SizedBox(height: 8),
-            const Text('$subtitle', style: TextStyle(color: NovaColors.secondaryText)),
+            const Text(
+              'Discover something worth your time',
+              style: TextStyle(color: NovaColors.secondaryText),
+            ),
             const Spacer(),
-            Center(child: Icon($icon, size: 54, color: NovaColors.bright)),
+            const Center(
+              child: Icon(
+                Icons.explore_rounded,
+                size: 54,
+                color: NovaColors.bright,
+              ),
+            ),
             const SizedBox(height: 14),
             const Center(
               child: Text(
-                'This NovaTube section is being built.',
+                'Explore recommendations are being connected.',
+                textAlign: TextAlign.center,
                 style: TextStyle(color: NovaColors.muted),
               ),
             ),
