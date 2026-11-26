@@ -18,7 +18,7 @@ abstract final class NovaColors {
 
 abstract final class NovaTheme {
   static ThemeData dark() {
-    final scheme = const ColorScheme.dark(
+    const scheme = ColorScheme.dark(
       primary: NovaColors.primary,
       secondary: NovaColors.bright,
       surface: NovaColors.surface,
