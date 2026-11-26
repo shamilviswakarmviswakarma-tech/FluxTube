@@ -83,21 +83,21 @@ class _SearchPageState extends State<SearchPage> {
               }).toList(),
             ),
             const Spacer(),
-            Center(
+            const Center(
               child: Column(
                 children: [
-                  const Icon(
+                  Icon(
                     Icons.travel_explore_rounded,
                     size: 52,
                     color: NovaColors.bright,
                   ),
-                  const SizedBox(height: 14),
-                  const Text(
+                  SizedBox(height: 14),
+                  Text(
                     'Your next discovery starts here',
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
                   ),
-                  const SizedBox(height: 6),
-                  const Text(
+                  SizedBox(height: 6),
+                  Text(
                     'Search providers are being connected.',
                     textAlign: TextAlign.center,
                     style: TextStyle(color: NovaColors.muted),
