@@ -39,29 +39,43 @@ jobs:
         id: signing
         shell: bash
         env:
-          ANDROID_KEYSTORE_BASE64: \${{ secrets.ANDROID_KEYSTORE_BASE64 }}
-          ANDROID_KEYSTORE_PASSWORD: \${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
-          ANDROID_KEY_PASSWORD: \${{ secrets.ANDROID_KEY_PASSWORD }}
-          ANDROID_KEY_ALIAS: \${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
         run: |
           set -euo pipefail
 
-          if [[ -z "\${ANDROID_KEYSTORE_BASE64}" || -z "\${ANDROID_KEYSTORE_PASSWORD}" || -z "\${ANDROID_KEY_PASSWORD}" || -z "\${ANDROID_KEY_ALIAS}" ]]; then
-            echo "Android signing secrets are not configured; building an unsigned release APK."
-            echo "enabled=false" >> "\${GITHUB_OUTPUT}"
+          # A missing or malformed optional keystore must not stop the APK build.
+          if [[ -z "$ANDROID_KEYSTORE_BASE64" || -z "$ANDROID_KEYSTORE_PASSWORD" || -z "$ANDROID_KEY_PASSWORD" || -z "$ANDROID_KEY_ALIAS" ]]; then
+            echo "Android signing secrets are missing; continuing with an unsigned release APK."
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
           mkdir -p android/app
-          printf '%s' "\${ANDROID_KEYSTORE_BASE64}" | base64 --decode > android/app/key.jks
+          cleaned_base64="$(printf '%s' "$ANDROID_KEYSTORE_BASE64" | tr -d '\r\n[:space:]')"
+          if ! printf '%s' "$cleaned_base64" | base64 --decode > android/app/key.jks 2>/dev/null; then
+            echo "::warning::ANDROID_KEYSTORE_BASE64 is not valid Base64; continuing with an unsigned release APK."
+            rm -f android/app/key.jks
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          if [[ ! -s android/app/key.jks ]]; then
+            echo "::warning::Decoded Android keystore is empty; continuing unsigned."
+            rm -f android/app/key.jks
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
 
           {
-            printf 'storePassword=%s\\n' "\${ANDROID_KEYSTORE_PASSWORD}"
-            printf 'keyPassword=%s\\n' "\${ANDROID_KEY_PASSWORD}"
-            printf 'keyAlias=%s\\n' "\${ANDROID_KEY_ALIAS}"
-            printf 'storeFile=key.jks\\n'
+            printf 'storePassword=%s\n' "$ANDROID_KEYSTORE_PASSWORD"
+            printf 'keyPassword=%s\n' "$ANDROID_KEY_PASSWORD"
+            printf 'keyAlias=%s\n' "$ANDROID_KEY_ALIAS"
+            printf 'storeFile=key.jks\n'
           } > android/key.properties
-          echo "enabled=true" >> "\${GITHUB_OUTPUT}"
+          echo "enabled=true" >> "$GITHUB_OUTPUT"
 
       - name: Verify signing key fingerprint
         if: steps.signing.outputs.enabled == 'true'
