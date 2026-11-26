@@ -12,7 +12,8 @@ void main() {
     expect(find.text('Profile'), findsOneWidget);
   });
 
-  testWidgets('Search shows suggestions and filters preview results', (tester) async {
+  testWidgets('Search shows suggestions and filters preview results',
+      (tester) async {
     await tester.pumpWidget(const NovaTubeApp());
     await tester.tap(find.text('Search'));
     await tester.pumpAndSettle();
@@ -24,7 +25,8 @@ void main() {
     await tester.testTextInput.receiveAction(TextInputAction.search);
     await tester.pumpAndSettle();
     expect(find.textContaining('Results for'), findsOneWidget);
-    expect(find.text('Build a beautiful Flutter app from scratch'), findsOneWidget);
+    expect(find.text('Build a beautiful Flutter app from scratch'),
+        findsOneWidget);
     expect(find.text('Artificial Intelligence explained simply'), findsNothing);
   });
 }
