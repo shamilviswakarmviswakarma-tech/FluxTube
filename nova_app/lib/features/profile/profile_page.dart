@@ -14,15 +14,28 @@ class ProfilePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 18),
-            Text('$title', style: const TextStyle(fontSize: 28, fontWeight: FontWeight.w800)),
+            const Text(
+              'Profile',
+              style: TextStyle(fontSize: 28, fontWeight: FontWeight.w800),
+            ),
             const SizedBox(height: 8),
-            const Text('$subtitle', style: TextStyle(color: NovaColors.secondaryText)),
+            const Text(
+              'Personalize your NovaTube experience',
+              style: TextStyle(color: NovaColors.secondaryText),
+            ),
             const Spacer(),
-            Center(child: Icon($icon, size: 54, color: NovaColors.bright)),
+            const Center(
+              child: Icon(
+                Icons.account_circle_outlined,
+                size: 54,
+                color: NovaColors.bright,
+              ),
+            ),
             const SizedBox(height: 14),
             const Center(
               child: Text(
-                'This NovaTube section is being built.',
+                'Profile preferences are coming soon.',
+                textAlign: TextAlign.center,
                 style: TextStyle(color: NovaColors.muted),
               ),
             ),
