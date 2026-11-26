@@ -1,9 +1,9 @@
 name: fluxtube
-description: "NovaTube video experience with smart playback and learning tools."
+description: "NovaTube independent Flutter application."
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 1.0.0+16
+version: 1.0.0+1
 
 environment:
   sdk: '>=3.3.1 <4.0.0'
