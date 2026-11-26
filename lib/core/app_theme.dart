@@ -7,14 +7,14 @@ import 'package:fluxtube/core/colors.dart';
 /// literal source values the design was authored against.
 abstract class _KineticColors {
   // Dark ("Kinetic Obsidian")
-  static const darkPrimary = Color(0xFFFFB3B2);
-  static const darkOnPrimary = Color(0xFF680013);
-  static const darkPrimaryContainer = Color(0xFFFF525E);
-  static const darkOnPrimaryContainer = Color(0xFF5B0010);
-  static const darkPrimaryFixed = Color(0xFFFFDAD9);
-  static const darkPrimaryFixedDim = Color(0xFFFFB3B2);
-  static const darkOnPrimaryFixed = Color(0xFF410008);
-  static const darkOnPrimaryFixedVariant = Color(0xFF92001F);
+  static const darkPrimary = Color(0xFF54B5FF);
+  static const darkOnPrimary = Color(0xFFFFFFFF);
+  static const darkPrimaryContainer = Color(0xFF1677FF);
+  static const darkOnPrimaryContainer = Color(0xFFFFFFFF);
+  static const darkPrimaryFixed = Color(0xFFD7E9FF);
+  static const darkPrimaryFixedDim = Color(0xFF54B5FF);
+  static const darkOnPrimaryFixed = Color(0xFF001B3D);
+  static const darkOnPrimaryFixedVariant = Color(0xFF003F91);
   static const darkSecondary = Color(0xFFBDF4FF);
   static const darkOnSecondary = Color(0xFF00363D);
   static const darkSecondaryContainer = Color(0xFF00E3FD);
@@ -35,32 +35,32 @@ abstract class _KineticColors {
   static const darkOnError = Color(0xFF690005);
   static const darkErrorContainer = Color(0xFF93000A);
   static const darkOnErrorContainer = Color(0xFFFFDAD6);
-  static const darkSurface = Color(0xFF131313);
+  static const darkSurface = Color(0xFF000000);
   static const darkOnSurface = Color(0xFFE2E2E2);
-  static const darkSurfaceDim = Color(0xFF131313);
-  static const darkSurfaceBright = Color(0xFF393939);
-  static const darkSurfaceContainerLowest = Color(0xFF0E0E0E);
-  static const darkSurfaceContainerLow = Color(0xFF1B1B1B);
-  static const darkSurfaceContainer = Color(0xFF1F1F1F);
-  static const darkSurfaceContainerHigh = Color(0xFF2A2A2A);
-  static const darkSurfaceContainerHighest = Color(0xFF353535);
-  static const darkOnSurfaceVariant = Color(0xFFE8BCBB);
-  static const darkOutline = Color(0xFFAE8786);
-  static const darkOutlineVariant = Color(0xFF5E3F3E);
+  static const darkSurfaceDim = Color(0xFF000000);
+  static const darkSurfaceBright = Color(0xFF17243A);
+  static const darkSurfaceContainerLowest = Color(0xFF000000);
+  static const darkSurfaceContainerLow = Color(0xFF080D18);
+  static const darkSurfaceContainer = Color(0xFF111722);
+  static const darkSurfaceContainerHigh = Color(0xFF17243A);
+  static const darkSurfaceContainerHighest = Color(0xFF1D2A40);
+  static const darkOnSurfaceVariant = Color(0xFF9BA8BB);
+  static const darkOutline = Color(0xFF52627A);
+  static const darkOutlineVariant = Color(0xFF263247);
   static const darkInverseSurface = Color(0xFFE2E2E2);
   static const darkOnInverseSurface = Color(0xFF303030);
-  static const darkInversePrimary = Color(0xFFBF002C);
-  static const darkSurfaceTint = Color(0xFFFFB3B2);
+  static const darkInversePrimary = Color(0xFF54B5FF);
+  static const darkSurfaceTint = Color(0xFF54B5FF);
 
   // Light ("Kinetic Alabaster")
-  static const lightPrimary = Color(0xFFBA002B);
+  static const lightPrimary = Color(0xFF1677FF);
   static const lightOnPrimary = Color(0xFFFFFFFF);
-  static const lightPrimaryContainer = Color(0xFFE90038);
+  static const lightPrimaryContainer = Color(0xFF0B4FBB);
   static const lightOnPrimaryContainer = Color(0xFFFFFBFF);
-  static const lightPrimaryFixed = Color(0xFFFFDAD9);
-  static const lightPrimaryFixedDim = Color(0xFFFFB3B2);
-  static const lightOnPrimaryFixed = Color(0xFF410008);
-  static const lightOnPrimaryFixedVariant = Color(0xFF92001F);
+  static const lightPrimaryFixed = Color(0xFFD7E9FF);
+  static const lightPrimaryFixedDim = Color(0xFF54B5FF);
+  static const lightOnPrimaryFixed = Color(0xFF001B3D);
+  static const lightOnPrimaryFixedVariant = Color(0xFF003F91);
   static const lightSecondary = Color(0xFF00696B);
   static const lightOnSecondary = Color(0xFFFFFFFF);
   static const lightSecondaryContainer = Color(0xFF56F5F8);
@@ -82,21 +82,21 @@ abstract class _KineticColors {
   static const lightErrorContainer = Color(0xFFFFDAD6);
   static const lightOnErrorContainer = Color(0xFF93000A);
   static const lightSurface = Color(0xFFFFFFFF);
-  static const lightOnSurface = Color(0xFF131313);
+  static const lightOnSurface = Color(0xFF000000);
   static const lightSurfaceDim = Color(0xFFF1F3F5);
-  static const lightSurfaceBright = Color(0xFFF8F9FA);
+  static const lightSurfaceBright = Color(0xFFF4F7FC);
   static const lightSurfaceContainerLowest = Color(0xFFFFFFFF);
   static const lightSurfaceContainerLow = Color(0xFFF3F4F5);
-  static const lightSurfaceContainer = Color(0xFFEDEEEF);
+  static const lightSurfaceContainer = Color(0xFFEAF1FA);
   static const lightSurfaceContainerHigh = Color(0xFFE7E8E9);
-  static const lightSurfaceContainerHighest = Color(0xFFE1E3E4);
-  static const lightOnSurfaceVariant = Color(0xFF495057);
+  static const lightSurfaceContainerHighest = Color(0xFFD5E0EF);
+  static const lightOnSurfaceVariant = Color(0xFF52627A);
   static const lightOutline = Color(0xFFDEE2E6);
-  static const lightOutlineVariant = Color(0xFFE8BCBB);
+  static const lightOutlineVariant = Color(0xFF9BA8BB);
   static const lightInverseSurface = Color(0xFF2E3132);
   static const lightOnInverseSurface = Color(0xFFF0F1F2);
-  static const lightInversePrimary = Color(0xFFFFB3B2);
-  static const lightSurfaceTint = Color(0xFFBA002B);
+  static const lightInversePrimary = Color(0xFF54B5FF);
+  static const lightSurfaceTint = Color(0xFF1677FF);
 
   static const darkScheme = ColorScheme(
     brightness: Brightness.dark,
